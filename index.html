@@ -3,6 +3,7 @@
   <head>
   </head>
   <body>
+    <img src="img/ava.png"/>
     <p>hello ...</p>
   </body>
   <script>
@@ -10,7 +11,13 @@
     if ('serviceWorker' in navigator) {
       // Use the window load event to keep the page load performant
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
+        navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log(`Service Worker registered! Scope: ${registration.scope}`);
+        })
+        .catch(error => {
+          console.log(`Service Worker registration failed: ${error}`);
+        });
       });
     }
     </script>
